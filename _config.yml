@@ -2,3 +2,4 @@ theme: jekyll-theme-cayman
 
 title: Code to Learn
 description: My Learning Journey of Coding
+baseurl: /blog/
