@@ -1,6 +1,6 @@
 ---
 title: Help
-permalink: /help/
+permalink: ./help
 ---
 
 This is help page
