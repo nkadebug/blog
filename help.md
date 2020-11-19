@@ -1,5 +1,5 @@
 ---
-title: Hep
+title: Help
 permalink: /help/
 ---
 
