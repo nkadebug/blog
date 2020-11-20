@@ -1,7 +1,7 @@
 theme: jekyll-theme-cayman
 
 title: Code to Learn
-description: My Learning Journey of Coding
+description: My Learning Journey of Coding.
 baseurl: /blog
 
 permalink: /:year/:month/:date/:title
