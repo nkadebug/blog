@@ -1,7 +1,12 @@
-theme: jekyll-theme-cayman
-
 title: Code to Learn
-description: My Learning Journey of Coding.
-baseurl: /blog
+description: >- # this means to ignore newlines until "baseurl:"
+  My Learning Journey
+baseurl: '/blog' # the subpath of your site, e.g. /blog
+url: '' # the base hostname & protocol for your site, e.g. http://example.com
 
-permalink: /:year/:month/:date/:title
+repository: nkadebug/blog
+
+# Build settings
+theme: jekyll-theme-cayman
+# plugins:
+# - jekyll-feed

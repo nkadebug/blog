@@ -1,2 +1,5 @@
-//Import Cayman Theme : https://github.com/pages-themes/cayman
-@import "{{ site.theme }}";
+@import '{{ site.theme }}';
+
+.page-header {
+  padding: 2rem 2rem;
+}
