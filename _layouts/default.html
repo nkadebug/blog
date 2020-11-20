@@ -21,24 +21,48 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
   <body>
-    <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      <a href="{{ "/" | relative_url }}" class="btn">Home</a>
-      {% for page in site.pages %}
-        {% if page.title %}
-          <a href="{{ page.url | relative_url }}" class="btn">{{ page.title }}</a>
-        {% endif %}
-      {% endfor %}
+        <!-- <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+        <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2> -->
+        <header class="topnav" id="myTopnav">
+          <div class="title">
+            <a href="{{ "/" | relative_url }}">{{ site.title }} <small style="margin-left: 1rem;"><i>{{ site.description }}</i></small></a>
+          </div>
+          <div class="menu">
+          <a href="{{ "/" | relative_url }}" >Home</a>
+          {% for page in site.pages %}
+            {% if page.title %}
+              <a href="{{ page.url | relative_url }}" >{{ page.title }}</a>
+            {% endif %}
+          {% endfor %}
+          <a href="{{ "feed.xml" | relative_url }}" target="_blank" ><svg enable-background="new 0 0 24 24" height="1rem" viewBox="0 0 24 24" width="1rem" xmlns="http://www.w3.org/2000/svg"><g fill="#159957"><circle cx="3.429" cy="20.571" r="3.429"/><path d="m11.429 24h4.57c0-8.821-7.178-15.999-15.999-16v4.572c6.302.001 11.429 5.126 11.429 11.428z"/><path d="m24 24c0-13.234-10.766-24-24-24v4.571c10.714 0 19.43 8.714 19.43 19.429z"/></g></svg></a>
+          
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="lightgray"><path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/></svg>
+          </a>
+          <script>
+            function myFunction() {
+              var x = document.getElementById("myTopnav");
+              if (x.className === "topnav") {
+                x.className += " responsive";
+              } else {
+                x.className = "topnav";
+              }
+            }
+            </script>
+            </div>
     </header>
 
     <main id="content" class="main-content" role="main">
-      {{ content }}
-    </main>
-    <!-- <footer class="site-footer">
-      {% if site.github.is_project_page %}
-        <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+      {% if page.title %}
+      <h1>{{ page.title }}</h1>
+      <hr>
       {% endif %}
-    </footer> -->
+      {{ content }}
+      <footer class="site-footer d-none">
+        {% if site.github.is_project_page %}
+          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+        {% endif %}
+      </footer>
+    </main>
   </body>
 </html>
