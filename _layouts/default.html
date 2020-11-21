@@ -12,7 +12,7 @@
 	</script>
 	{% endif %}
 	<meta charset="UTF-8">
-
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	{% seo %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#157878">
@@ -34,9 +34,9 @@
 				<a href="{{ "/" | relative_url }}">Home</a>
 
 				{% for page in site.pages %}
-                    {% if page.show_in_menu %}
-                        <a href="{{ page.url | relative_url }}">{{ page.title }}</a>
-                    {% endif %}
+				{% if page.show_in_menu %}
+				<a href="{{ page.url | relative_url }}">{{ page.title }}</a>
+				{% endif %}
 				{% endfor %}
 
 				<a href="{{ "feed.xml" | relative_url }}" target="_blank">
