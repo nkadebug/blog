@@ -6,6 +6,8 @@ url: "https://nkadebug.github.io" # the base hostname & protocol for your site, 
 
 repository: nkadebug/blog
 
+permalink: /:year/:month/:day/:title
+
 # Build settings
 theme: jekyll-theme-cayman
 plugins:
