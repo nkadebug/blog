@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+{% for post in site.posts %} {% capture postdate %}{{ post.date |
+date:'%Y-%m-%d'}}{% endcapture %} {% if prepostdate != postdate %}
+
+<div class="date">
+  <span>{{ post.date | date:"%b %-d, %Y"}}</span>
+</div>
+
+{% endif %}
+
+<h3 class="index-post-item">
+  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+</h3>
+
+{% capture prepostdate %}{{post.date | date: '%Y-%m-%d'}}{% endcapture %} {%
+endfor %}

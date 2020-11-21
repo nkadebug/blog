@@ -1,7 +1,7 @@
 ---
 ---
 
-@import '{{ site.theme }}';
+@import "{{ site.theme }}";
 
 .d-none {
   display: none !important;
@@ -36,8 +36,8 @@
   display: none;
 }
 
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {
+@media screen and (max-width: 42em) {
+  .topnav a {
     display: none;
   }
   .topnav a.icon {
@@ -46,7 +46,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 42em) {
   .topnav.responsive {
     position: relative;
   }
@@ -60,6 +60,10 @@
     display: block;
     text-align: left;
   }
+  .topnav.responsive .menu {
+    float: none;
+    border-top: 1px solid white;
+  }
 }
 
 .topnav .menu {
@@ -67,10 +71,69 @@
 }
 
 .topnav .title a {
-  float: left;
   display: block;
   color: #f2f2f2;
-  text-align: center;
   padding: 10px 12px;
   font-size: 22px;
+}
+
+@media screen and (min-width: 64em) {
+  .topnav > div {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 5rem;
+  }
+}
+
+@media screen and (max-width: 64em) and (min-width: 42em) {
+  .topnav > div {
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (max-width: 42em) {
+  .topnav a > span:nth-child(2) {
+    display: none !important;
+  }
+}
+
+.date {
+  margin-top: 1rem;
+  background: #159957;
+  border-radius: 3px 0 0 3px;
+  color: white;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.date::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: "";
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.date::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #159957;
+  border-top: 13px solid transparent;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.index-post-item {
+  margin-top: 1rem !important;
 }
