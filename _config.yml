@@ -8,8 +8,6 @@ repository: nkadebug/blog
 
 permalink: /:year/:month/:day/:title
 
-future: false
-
 # Build settings
 theme: jekyll-theme-cayman
 plugins:
