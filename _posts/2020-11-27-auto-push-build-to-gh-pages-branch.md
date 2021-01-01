@@ -3,7 +3,7 @@ layout: default
 date: 2020-11-27 10:44:00
 ---
 
-Create a file `main.yml` in `.github/workflows/` with following code.
+Create a file `main.yml` in `.github/workflows/` directory with following code.
 
 ```YML
 name: Build & Deploy
@@ -12,12 +12,15 @@ on:
     branches:
       - master
   schedule:
+    # Runs in every 10 minutes
     - cron: '*/10 * * * *'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    # Timeout before next run
     timeout-minutes: 9
     env:
+      # Change branch names as reuired
       master_branch: master
       gh_pages_branch: gh-pages
 
