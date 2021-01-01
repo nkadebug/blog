@@ -6,70 +6,50 @@ date: 2020-11-27 10:44:00
 [View File on Github](https://github.com/easyprep/api/blob/master/.github/workflows/build-gh-pages.yml)
 
 ```YML
-name: Build & Deploy to GH-Pages Branch
+name: Build & Deploy
 on:
   push:
     branches:
       - master
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/10 * * * *"
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout master
-        uses: actions/checkout@v2
-      
-      - name: Setup NodeJS
-        uses: actions/setup-node@v1
-      
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+    timeout-minutes: 9
 
-      - name: Install Dependencies 
-        run: npm i
-      
-      - name: Run Build Script
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependancies
+        run: npm ci
+
+      - name: Build
         run: npm start
-      
+
       - name: Setup Github Account
         run: |
-          git config --global user.email "nka.easyprep@gmail.com"
-          git config --global user.name "easyprep"
-      
-      - name: Git Pull
-        run: git pull
-      
+          git config user.email "nka.debug@gmail.com"
+          git config user.name "nkadebug"
+
       - name: Select GH-Pages Branch
         run: |
-          if git branch --list "gh-pages"
-          then
-            echo "Exists - gh-pages branch"
-            git checkout gh-pages
-          else
-            echo "Creating - gh-pages branch"
-            git checkout -b gh-pages
-            git rm -rf .
-            git checkout master -- .gitignore
-          fi
+          git pull
+          git checkout "gh-pages" || git checkout -b "gh-pages" && git rm -rf . && git checkout master -- .gitignore
 
       - name: Push To GH-Pages
         run: |
-          mv docs/* .
+          cp -r dist/* .
           git add .
-          git commit -m "Auto Updated $(date)"
-          git push origin gh-pages
-          
-      - name: Completed
-        run: echo "Job Done Successfully"
-
+          set +e
+          if git status | grep 'new file\|modified'
+          then
+              set -e
+              git commit -m "Auto Updated $(date)"
+              git push origin gh-pages
+          else
+              set -e
+              echo "No changes since last run"
+          fi
+          echo "finish"
 ```
