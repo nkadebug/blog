@@ -3,8 +3,6 @@ layout: default
 date: 2020-11-27 10:44:00
 ---
 
-[View File on Github](https://github.com/easyprep/api/blob/master/.github/workflows/build-gh-pages.yml)
-
 ```YML
 name: Build & Deploy
 on:
