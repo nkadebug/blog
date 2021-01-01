@@ -2,6 +2,7 @@
 layout: default
 date: 2020-11-27 10:44:00
 ---
+
 Create a file `main.yml` in `.github/workflows/` with following code.
 
 ```YML
@@ -11,8 +12,7 @@ on:
     branches:
       - master
   schedule:
-    # After every 10 minutes
-    - cron: "*/10 * * * *"
+    - cron: '*/10 * * * *'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -24,20 +24,30 @@ jobs:
       - name: Install Dependancies
         run: npm ci
 
-      - name: Build
+      - name: Run Build Script
         run: npm start
 
       - name: Setup Github Account
-        run: |
-          git config user.email {GITHUB_USER_EMAIL_ID}
-          git config user.name {GITHUB_USERNAME}
+        run: git config user.name ${{ github.actor }}
 
       - name: Select GH-Pages Branch
         run: |
-          git pull
-          git checkout "gh-pages" || git checkout -b "gh-pages" && git rm -rf . && git checkout master -- .gitignore
+          git pull --rebase=true
+          set +e
+          if git branch -a | grep 'remotes/origin/gh-pages'
+          then
+            set -e
+            echo 'Exists: gh-pages Branch'
+            git checkout "gh-pages"
+          else
+            set-e
+            echo 'Created: gh-pages Branch'
+            git checkout -b "gh-pages"
+            git rm -rf .
+            git checkout master -- .gitignore
+          fi
 
-      - name: Push To GH-Pages
+      - name: Push To GH-Pages Branch
         run: |
           cp -r dist/* .
           git add .
