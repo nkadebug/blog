@@ -5,7 +5,7 @@ date: 2020-11-27 10:44:00
 
 Create a file `main.yml` in `.github/workflows/` with following code.
 
-```
+```YML
 name: Build & Deploy
 on:
   push:
@@ -60,11 +60,11 @@ jobs:
           if git status | grep 'new file\|modified'
           then
               set -e
-              git commit -m "Auto Updated $(date)"
+              git commit -m "Auto Updated at: $(date -Is)"
               git push origin "$gh_pages_branch"
           else
               set -e
               echo "No changes to commit"
           fi
-          echo "finish"
+          echo "Finish"
 ```
