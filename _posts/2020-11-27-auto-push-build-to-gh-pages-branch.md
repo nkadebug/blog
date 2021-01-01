@@ -28,7 +28,7 @@ jobs:
         run: npm start
 
       - name: Setup Github Account
-        run: git config user.name `${{ github.actor }}`
+        run: git config user.name $GITHUB_ACTOR
 
       - name: Select GH-Pages Branch
         run: |
