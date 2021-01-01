@@ -27,8 +27,8 @@ jobs:
 
       - name: Setup Github Account
         run: |
-          git config user.email "nka.debug@gmail.com"
-          git config user.name "nkadebug"
+          git config user.email {GITHUB_USER_EMAIL_ID}
+          git config user.name {GITHUB_USERNAME}
 
       - name: Select GH-Pages Branch
         run: |
