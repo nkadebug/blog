@@ -5,7 +5,7 @@ date: 2020-11-27 10:44:00
 
 Create a file `main.yml` in `.github/workflows/` with following code.
 
-```YML
+```
 name: Build & Deploy
 on:
   push:
