@@ -17,6 +17,9 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 9
+    env:
+      master_branch: master
+      gh_pages_branch: gh-pages
 
     steps:
       - uses: actions/checkout@v2
@@ -28,23 +31,25 @@ jobs:
         run: npm start
 
       - name: Setup Github Account
-        run: git config user.name $GITHUB_ACTOR
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "${GITHUB_ACTOR}@bots.github.com"
 
       - name: Select GH-Pages Branch
         run: |
           git pull --rebase=true
           set +e
-          if git branch -a | grep 'remotes/origin/gh-pages'
+          if git branch -a | grep "remotes/origin/${gh_pages_branch}"
           then
             set -e
-            echo 'Exists: gh-pages Branch'
-            git checkout "gh-pages"
+            echo "Exists: ${gh_pages_branch} Branch"
+            git checkout "$gh_pages_branch"
           else
             set-e
-            echo 'Created: gh-pages Branch'
-            git checkout -b "gh-pages"
+            echo "Created: ${gh_pages_branch} Branch"
+            git checkout -b "$gh_pages_branch"
             git rm -rf .
-            git checkout master -- .gitignore
+            git checkout "$master_branch" -- .gitignore
           fi
 
       - name: Push To GH-Pages Branch
@@ -56,10 +61,10 @@ jobs:
           then
               set -e
               git commit -m "Auto Updated $(date)"
-              git push origin gh-pages
+              git push origin "$gh_pages_branch"
           else
               set -e
-              echo "No changes since last run"
+              echo "No changes to commit"
           fi
           echo "finish"
 ```
