@@ -12,3 +12,5 @@
 # Firebase
 `firebase init hosting`
 
+# Firebase auto from github
+`firebase init hosting:github`
