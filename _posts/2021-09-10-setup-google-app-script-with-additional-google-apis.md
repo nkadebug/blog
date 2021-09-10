@@ -1,17 +1,17 @@
 ## Step 1 (optional)
 Create new Google Script Project [Click here](http://script.google.com/)
 
-To use other Google APIs with Google Script Project, you need to change the Google Script Project type from default to standard under Project Settings.
-To change project type you need to enter Google Cloud Project number. 
+* To use other Google APIs with Google Script Project, you need to change the Google Script Project type from default to standard under Project Settings.
+* To change project type you need to enter Google Cloud Project number. 
 
 ## Step 2
 If you already creted one, get project from [this link](https://console.cloud.google.com/iam-admin/settings)
 or Create a new Google Cloud Project [visit](https://console.cloud.google.com/)
 
 ## Step 3
-Update Concent Screen Deatils [Click here](https://console.cloud.google.com/apis/credentials/consent)
-Add desired Scopes.
-All Oauth Scope List : [View](https://developers.google.com/identity/protocols/oauth2/scopes)
+* Update Concent Screen Deatils [Click here](https://console.cloud.google.com/apis/credentials/consent)
+* Add desired Scopes. All Oauth Scope List : [View](https://developers.google.com/identity/protocols/oauth2/scopes)
+
 If you see "Needs verification", don't worry, On your login screen you will se "Not Verified by google", but app will work fine.
 
 ## Step 4
